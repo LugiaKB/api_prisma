@@ -1,0 +1,9 @@
+model UserDocument {
+    id        String   @id @default(uuid(7))
+    title     String
+    url       String
+    user      User     @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    userId    String
+}

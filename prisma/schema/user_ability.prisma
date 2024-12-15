@@ -1,0 +1,10 @@
+model UserAbility {
+    id               String   @id @default(uuid(7))
+    user             User     @relation(fields: [userId], references: [id])
+    ability          Ability  @relation(fields: [abilityId], references: [id])
+    years_experience Int      @default(0)
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+    userId           String
+    abilityId        String
+}

@@ -1,10 +1,13 @@
 model UserAbility {
-    id               String   @id @default(uuid(7))
-    user             User     @relation(fields: [userId], references: [id])
-    ability          Ability  @relation(fields: [abilityId], references: [id])
-    years_experience Int      @default(0)
-    createdAt        DateTime @default(now())
-    updatedAt        DateTime @updatedAt
-    userId           String
-    abilityId        String
+    id              String   @id @default(uuid(7))
+    user            User     @relation(fields: [userId], references: [id])
+    ability         Ability  @relation(fields: [abilityId], references: [id])
+    yearsExperience Int      @default(0) @map("years_experience")
+    createdAt       DateTime @default(now()) @map("created_at")
+    updatedAt       DateTime @updatedAt @map("updated_at")
+    userId          String   @map("user_id")
+    abilityId       String   @map("ability_id")
+
+    @@unique([userId, abilityId], name: "user_ability_unique")
+    @@map("user_abilities")
 }
